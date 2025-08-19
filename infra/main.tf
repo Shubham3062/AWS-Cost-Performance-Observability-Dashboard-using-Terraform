@@ -8,25 +8,25 @@ terraform {
 }
 
 module "cur" {
-  source  = "./infra/cur.tf"
+  source  = "./cur"
   project = var.project
 }
 
 module "glue_athena" {
-  source  = "./infra/glue_athena.tf"
+  source  = "./glue_athena"
   project = var.project
   cur_bucket = module.cur.cur_bucket_name
 }
 
 module "lambda" {
-  source  = "./infra/lambda.tf"
+  source  = "./lambda"
   project = var.project
   athena_db = module.glue_athena.athena_db
   athena_results_bucket = module.glue_athena.athena_results_bucket
 }
 
 module "sns" {
-  source  = "./infra/sns.tf"
+  source  = "./sns"
   project = var.project
   email   = var.alert_email
 }
