@@ -8,13 +8,13 @@ from datetime import datetime
 # --- Config ---
 ATHENA_DATABASE = os.environ.get("ATHENA_DATABASE", "cur_db")
 ATHENA_OUTPUT = os.environ.get("ATHENA_OUTPUT", "s3://aws-cost-dashboard-athena-results/")
-S3_BUCKET = os.environ.get("REPORT_BUCKET", "my-athena-results-bucket-project-demo")
+S3_BUCKET = os.environ.get("REPORT_BUCKET", "aws-cost-dashboard-visualizations")
 SNS_TOPIC_ARN = os.environ.get("SNS_TOPIC_ARN")
 
-ATHENA_DB = "aws_cost_dashboard_cur_db"
-ATHENA_OUTPUT = "s3://aws-cost-dashboard-athena-results/"
-BUCKET = "aws-cost-dashboard-visualizations"
-SNS_TOPIC = "arn:aws:sns:eu-west-2:123456789012:aws-cost-dashboard-sns"
+# ATHENA_DB = "aws_cost_dashboard_cur_db"
+# ATHENA_OUTPUT = "s3://aws-cost-dashboard-athena-results/"
+# BUCKET = "aws-cost-dashboard-visualizations"
+# SNS_TOPIC = "arn:aws:sns:eu-west-2:123456789012:aws-cost-dashboard-sns"
 
 athena = boto3.client("athena")
 s3 = boto3.client("s3")
@@ -130,4 +130,5 @@ def lambda_handler(event, context):
     )
 
     return {"status": "done", "charts": chart_links}
+
 
