@@ -7,10 +7,6 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = "eu-west-2"
-}
-
 module "cur" {
   source  = "./"
   project = var.project
